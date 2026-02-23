@@ -1,4 +1,4 @@
-# JsonBodyProvider
+# VanDerHeijden.JsonBodyProvider
 
 **ASP.NET Core custom value provider**  
 Allows you to **bind multiple simple parameters directly from a JSON request body** — without using `[FromBody]` and without wrapper DTO classes.
