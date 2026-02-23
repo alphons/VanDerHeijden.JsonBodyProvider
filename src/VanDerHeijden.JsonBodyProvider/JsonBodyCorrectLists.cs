@@ -55,14 +55,14 @@ public class NoFallbackListBinder<T> : IModelBinder
 					continue;
 				}
 
-				// empty → default (regel a), behalve nullable → default = null? nee = 0/false (a/b)
+				// empty → default (line a), except nullable → default = null? no = 0/false (a/b)
 				if (v == "")
 				{
 					result.Add((T?)DefaultValueFor(underlying));
 					continue;
 				}
 
-				// parse naar type
+				// parse to type
 				result.Add((T?)ParseValue(v, underlying));
 			}
 
@@ -110,8 +110,6 @@ public class NoFallbackListBinder<T> : IModelBinder
 				return t;
 			return default(TimeOnly);
 		}
-
-		// verder zoals je had ↓↓↓
 
 		if (type == typeof(double)) return double.Parse(v, CultureInfo.InvariantCulture);
 		if (type == typeof(float)) return float.Parse(v, CultureInfo.InvariantCulture);

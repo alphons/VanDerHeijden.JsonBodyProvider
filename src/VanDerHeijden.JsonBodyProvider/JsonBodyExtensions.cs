@@ -4,12 +4,15 @@ namespace VanDerHeijden.JsonBodyProvider;
 
 public static class JsonBodyExtensions
 {
-	public static IServiceCollection AddJsonBodyProvider(this IServiceCollection services, bool CorrectLists = false)
+	public static IServiceCollection AddJsonBodyProvider(this IServiceCollection services, 
+		bool CorrectLists = true, 
+		bool ParseHeaders = false, 
+		bool ParseCookies = false)
 	{
 		return services
 			.AddControllers(options =>
 			{
-				options.ValueProviderFactories.Add(new JsonBodyValueProviderFactory());
+				options.ValueProviderFactories.Add(new JsonBodyValueProviderFactory(ParseHeaders, ParseCookies));
 				if (CorrectLists)
 				{
 					options.ModelBinderProviders.Insert(0, new NoFallbackListBinderProvider());

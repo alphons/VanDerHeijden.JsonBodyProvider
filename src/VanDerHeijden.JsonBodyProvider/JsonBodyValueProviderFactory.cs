@@ -4,7 +4,7 @@ using System.Text.Json.Nodes;
 
 namespace VanDerHeijden.JsonBodyProvider;
 
-internal class JsonBodyValueProviderFactory : IValueProviderFactory
+internal class JsonBodyValueProviderFactory(bool ParseHeaders, bool ParseCookies) : IValueProviderFactory
 {
 	public async Task CreateValueProviderAsync(ValueProviderFactoryContext context)
 	{
@@ -29,14 +29,20 @@ internal class JsonBodyValueProviderFactory : IValueProviderFactory
 			request.Body.Position = 0;
 		}
 
-		foreach (var header in request.Headers)
+		if (ParseHeaders)
 		{
-			if (header.Value.FirstOrDefault() is { } value)
-				values.TryAdd(header.Key, JsonValue.Create(value));
+			foreach (var header in request.Headers)
+			{
+				if (header.Value.FirstOrDefault() is { } value)
+					values.TryAdd(header.Key, JsonValue.Create(value));
+			}
 		}
 
-		foreach (var cookie in request.Cookies)
-			values.TryAdd(cookie.Key, JsonValue.Create(cookie.Value));
+		if (ParseCookies)
+		{
+			foreach (var cookie in request.Cookies)
+				values.TryAdd(cookie.Key, JsonValue.Create(cookie.Value));
+		}
 
 		context.ValueProviders.Add(new JsonBodyValueProvider(values));
 	}

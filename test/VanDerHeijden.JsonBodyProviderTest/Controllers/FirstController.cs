@@ -7,6 +7,7 @@ public class FirstController : ControllerBase
 {
 	[HttpPost("Test")]
 	public IActionResult Test(
+		string EventName,
 		string UserId,
 		DateTime Timestamp,
 		int Value,
@@ -26,6 +27,7 @@ public class FirstController : ControllerBase
 	{
 		return Ok(new
 		{
+			EventName,
 			UserId,
 			Timestamp,
 			Value,

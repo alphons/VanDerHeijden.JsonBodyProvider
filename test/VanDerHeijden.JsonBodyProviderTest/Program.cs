@@ -3,7 +3,7 @@ using VanDerHeijden.JsonBodyProvider;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddJsonProviders(CorrectLists: false);
+builder.Services.AddJsonBodyProvider();
 
 var app = builder.Build();
 
