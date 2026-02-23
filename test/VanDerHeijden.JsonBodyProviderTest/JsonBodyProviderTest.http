@@ -1,5 +1,7 @@
 @JsonBodyProviderTest_HostAddress = http://localhost:5129
 
+### Original test – alle typen
+
 POST {{JsonBodyProviderTest_HostAddress}}/First/Test
 Content-Type: application/json
 
@@ -24,5 +26,59 @@ Content-Type: application/json
   "Man": 32000,
   "Dater" : "2026-07-13",
   "Timer" : "12:34:56"
+}
 
+### Example 1 – Classic user creation
+
+POST {{JsonBodyProviderTest_HostAddress}}/api/users
+Content-Type: application/json
+
+{
+  "Name": "Lisa van Dijk",
+  "Age": 34,
+  "Email": "lisa@example.com",
+  "Roles": ["editor", "reviewer"],
+  "IsActive": true
+}
+
+### Example 2 – Order with items
+
+POST {{JsonBodyProviderTest_HostAddress}}/api/orders
+Content-Type: application/json
+
+{
+  "OrderNumber": "ORD-2025-78412",
+  "OrderDate": "2025-06-18",
+  "TotalAmount": 1249.95,
+  "ProductCodes": ["PROD-A42", "PROD-B17", "PROD-C09"],
+  "CustomerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "Remark": ""
+}
+
+### Example 3 – Analytics event
+
+POST {{JsonBodyProviderTest_HostAddress}}/api/events
+Content-Type: application/json
+
+{
+  "EventName": "purchase_completed",
+  "UserId": "usr_9k3j2p8x",
+  "Timestamp": "2025-06-18T14:22:09Z",
+  "Value": 1,
+  "Properties": {
+    "category": "electronics",
+    "source": "newsletter"
+  },
+  "IsConversion": true,
+  "CampaignId": null
+}
+
+### Example 4 – Minimal patch (only changed fields)
+
+PATCH {{JsonBodyProviderTest_HostAddress}}/api/items/3fa85f64-5717-4562-b3fc-2c963f66afa6
+Content-Type: application/json
+
+{
+  "Title": "Updated task name",
+  "Priority": 3
 }

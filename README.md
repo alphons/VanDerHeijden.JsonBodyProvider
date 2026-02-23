@@ -66,11 +66,11 @@ POST /api/users
 Content-Type: application/json
 
 {
-  "name": "Lisa van Dijk",
-  "age": 34,
-  "email": "lisa@example.com",
-  "roles": ["editor", "reviewer"],
-  "isActive": true
+  "Name": "Lisa van Dijk",
+  "Age": 34,
+  "Email": "lisa@example.com",
+  "Roles": ["editor", "reviewer"],
+  "IsActive": true
 }
 ```
 
@@ -92,12 +92,12 @@ public IActionResult PlaceOrder(
 
 ```json
 {
-  "orderNumber": "ORD-2025-78412",
-  "orderDate": "2025-06-18",
-  "totalAmount": 1249.95,
-  "productCodes": ["PROD-A42", "PROD-B17", "PROD-C09"],
-  "customerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "remark": ""
+  "OrderNumber": "ORD-2025-78412",
+  "OrderDate": "2025-06-18",
+  "TotalAmount": 1249.95,
+  "ProductCodes": ["PROD-A42", "PROD-B17", "PROD-C09"],
+  "CustomerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "Remark": ""
 }
 ```
 
@@ -120,16 +120,16 @@ public IActionResult TrackEvent(
 
 ```json
 {
-  "eventName": "purchase_completed",
-  "userId": "usr_9k3j2p8x",
-  "timestamp": "2025-06-18T14:22:09Z",
-  "value": 1,
-  "properties": {
-    "category": "electronics",
-    "source": "newsletter"
+  "EventName": "purchase_completed",
+  "UserId": "usr_9k3j2p8x",
+  "Timestamp": "2025-06-18T14:22:09Z",
+  "Value": 1,
+  "Properties": {
+    "Category": "electronics",
+    "Source": "newsletter"
   },
-  "isConversion": true,
-  "campaignId": null
+  "IsConversion": true,
+  "CampaignId": null
 }
 ```
 
@@ -150,8 +150,8 @@ public IActionResult PatchItem(
 
 ```json
 {
-  "title": "Updated task name",
-  "priority": 3
+  "Title": "Updated task name",
+  "Priority": 3
 }
 ```
 
@@ -162,7 +162,7 @@ public IActionResult PatchItem(
 - No wrapper DTO needed
 - Empty strings stay empty strings
 - Lists behave nicely (no random fallback to default(T) on parse errors)
-- Headers and cookies are also available as parameters
+- Headers and cookies are also available as parameters (optional)
 
 ## Golden rule (repeat until it hurts)
 
