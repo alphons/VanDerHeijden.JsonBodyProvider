@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace JsonBodyProvider;
+namespace VanDerHeijden.JsonBodyProvider;
 
 public static class JsonBodyExtensions
 {

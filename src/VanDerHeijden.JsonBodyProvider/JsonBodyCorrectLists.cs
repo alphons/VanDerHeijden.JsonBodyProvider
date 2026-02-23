@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Globalization;
 
-namespace JsonBodyProvider;
+namespace VanDerHeijden.JsonBodyProvider;
 
 public class EmptyStringPreservingBinderProvider : IModelBinderProvider
 {

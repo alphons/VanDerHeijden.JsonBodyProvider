@@ -1,4 +1,4 @@
-using JsonBodyProvider;
+using VanDerHeijden.JsonBodyProvider;
 
 var builder = WebApplication.CreateBuilder(args);
 

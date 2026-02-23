@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace JsonBodyProviderTest.Controllers;
+namespace VanDerHeijden.JsonBodyProviderTest.Controllers;
 
 [Route("[controller]")]
 public class FirstController : ControllerBase

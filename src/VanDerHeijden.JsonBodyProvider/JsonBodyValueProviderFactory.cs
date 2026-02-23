@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Text.Json.Nodes;
 
-namespace JsonBodyProvider;
+namespace VanDerHeijden.JsonBodyProvider;
 
 internal class JsonBodyValueProviderFactory : IValueProviderFactory
 {
