@@ -4,7 +4,7 @@ namespace VanDerHeijden.JsonBodyProvider;
 
 public static class JsonBodyExtensions
 {
-	public static IServiceCollection AddJsonProviders(this IServiceCollection services, bool CorrectLists = false)
+	public static IServiceCollection AddJsonBodyProvider(this IServiceCollection services, bool CorrectLists = false)
 	{
 		return services
 			.AddControllers(options =>

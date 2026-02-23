@@ -37,7 +37,7 @@ dotnet add package JsonBodyProvider
 ```csharp
 builder.Services
     .AddControllers()                       // ← no [ApiController] !
-    .AddJsonProviders(CorrectLists: true);  // ← enables nice list + string behaviour
+    .AddJsonBodyProvider(CorrectLists: true);  // ← enables normal list + string behaviour
 ```
 
 ## Good real-world examples

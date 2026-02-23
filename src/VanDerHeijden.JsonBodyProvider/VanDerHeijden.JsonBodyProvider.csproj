@@ -5,18 +5,16 @@
 		<Nullable>enable</Nullable>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageProjectUrl>https://github.com/alphons/JsonBodyProvider</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/alphons/JsonBodyProvider.git</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/alphons/VanDerHeijden.JsonBodyProvider</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/alphons/VanDerHeijden.JsonBodyProvider.git</RepositoryUrl>
 		<Description>Allows you to bind multiple simple parameters directly from a JSON request body - without using [FromBody] and without wrapper DTO classes</Description>
 		<PackageDescription>JsonBodyProvider for multi parameters model binding out of the box on AspNetCore</PackageDescription>
 		<Authors>alphons</Authors>
-		<PackageId>JsonBodyProvider</PackageId>
+		<PackageId>VanDerHeijden.JsonBodyProvider</PackageId>
 		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
 		<PackageTags>Microsoft;AspNetCore;Mvc;AspNetCoreMvc;json</PackageTags>
 		<PackageIcon>icon.png</PackageIcon>
-		<Version>10.0.1</Version>
-		<AssemblyVersion>10.0.1.0</AssemblyVersion>
-		<FileVersion>10.0.1.0</FileVersion>
+		<Version>10.0.3</Version>
 	</PropertyGroup>
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
