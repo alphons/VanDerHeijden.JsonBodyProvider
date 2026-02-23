@@ -5,7 +5,7 @@ VisualStudioVersion = 18.2.11408.102 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VanDerHeijden.JsonBodyProvider", "src\VanDerHeijden.JsonBodyProvider\VanDerHeijden.JsonBodyProvider.csproj", "{0BE9A54C-2854-98FE-DF07-B01FC5B4BA4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VanDerHeijden.JsonBodyProviderTest", "test\VanDerHeijden.JsonBodyProviderTest\VanDerHeijden.JsonBodyProviderTest.csproj", "{9FB8CDDF-2192-40AC-AD64-642800FC1CEC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VanDerHeijden.JsonBodyProviderTest", "tests\VanDerHeijden.JsonBodyProviderTest\VanDerHeijden.JsonBodyProviderTest.csproj", "{9FB8CDDF-2192-40AC-AD64-642800FC1CEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
