@@ -14,7 +14,7 @@
 		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
 		<PackageTags>Microsoft;AspNetCore;Mvc;AspNetCoreMvc;json</PackageTags>
 		<PackageIcon>icon.png</PackageIcon>
-		<Version>10.0.4</Version>
+		<Version>10.0.5</Version>
 	</PropertyGroup>
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />

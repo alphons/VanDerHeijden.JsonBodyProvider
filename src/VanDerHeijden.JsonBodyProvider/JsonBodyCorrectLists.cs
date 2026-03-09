@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Globalization;
+using System.Text.Json;
 
 namespace VanDerHeijden.JsonBodyProvider;
 
@@ -74,68 +75,34 @@ public class NoFallbackListBinder<T> : IModelBinder
 		return Task.CompletedTask;
 	}
 
-	private static object? ParseValue(string v, Type type)
+	private static object? ParseValue(string v, Type type) => type switch
 	{
-		// === GUID ===
-		if (type == typeof(Guid))
-		{
-			if (v == "") return Guid.Empty;
-			if (Guid.TryParse(v, out var g)) return g;
-			return Guid.Empty; // unknown → default
-		}
+		// === STRING ===
+		_ when type == typeof(string) => v,
 
-		// === DATETIME === (ISO / invariant)
-		if (type == typeof(DateTime))
-		{
-			if (v == "") return default(DateTime);
-			if (DateTime.TryParse(v, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out var dt))
-				return dt;
-			return default(DateTime); // unknown
-		}
+		// === GUID ===
+		_ when type == typeof(Guid) => v == "" || !Guid.TryParse(v, out var g) ? Guid.Empty : g,
+
+		// === DATETIME ===
+		_ when type == typeof(DateTime) => v == "" || !DateTime.TryParse(v, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out var dt) ? default(DateTime) : dt,
 
 		// === DATEONLY ===
-		if (type == typeof(DateOnly))
-		{
-			if (v == "") return default(DateOnly);
-			if (DateOnly.TryParse(v, CultureInfo.InvariantCulture, DateTimeStyles.None, out var d))
-				return d;
-			return default(DateOnly);
-		}
+		_ when type == typeof(DateOnly) => v == "" || !DateOnly.TryParse(v, CultureInfo.InvariantCulture, DateTimeStyles.None, out var d) ? default(DateOnly) : d,
 
 		// === TIMEONLY ===
-		if (type == typeof(TimeOnly))
-		{
-			if (v == "") return default(TimeOnly);
-			if (TimeOnly.TryParse(v, CultureInfo.InvariantCulture, DateTimeStyles.None, out var t))
-				return t;
-			return default(TimeOnly);
-		}
+		_ when type == typeof(TimeOnly) => v == "" || !TimeOnly.TryParse(v, CultureInfo.InvariantCulture, DateTimeStyles.None, out var t) ? default(TimeOnly) : t,
 
-		if (type == typeof(double)) return double.Parse(v, CultureInfo.InvariantCulture);
-		if (type == typeof(float)) return float.Parse(v, CultureInfo.InvariantCulture);
-		if (type == typeof(decimal)) return decimal.Parse(v, CultureInfo.InvariantCulture);
-		if (type == typeof(int)) return int.Parse(v, CultureInfo.InvariantCulture);
-		if (type == typeof(long)) return long.Parse(v, CultureInfo.InvariantCulture);
-		if (type == typeof(short)) return short.Parse(v, CultureInfo.InvariantCulture);
+		// === BOOL ===
+		_ when type == typeof(bool) => v.Equals("true", StringComparison.OrdinalIgnoreCase),
 
-		if (type == typeof(bool))
-		{
-			if (v.Equals("true", StringComparison.OrdinalIgnoreCase)) return true;
-			if (v.Equals("false", StringComparison.OrdinalIgnoreCase)) return false;
-			return false;
-		}
+		// === ENUM ===
+		_ when type.IsEnum => Enum.TryParse(type, v, true, out var parsed) ? parsed : Activator.CreateInstance(type)!,
 
-		if (type.IsEnum)
-		{
-			if (Enum.TryParse(type, v, true, out var parsed))
-				return parsed;
-			return Activator.CreateInstance(type)!;
-		}
+		// === NUMERIC + COMPLEX TYPES ===
+		_ => JsonSerializer.Deserialize(v, type, options)
+	};
 
-		// fallback
-		return Convert.ChangeType(v, type, CultureInfo.InvariantCulture);
-	}
-
+	private static readonly JsonSerializerOptions options = new() { PropertyNameCaseInsensitive = true };
 
 	private static object? DefaultValueFor(Type type)
 	{
