@@ -1,10 +1,42 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+	<title>VanDerHeijden.JsonBodyProvider Testing</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="utf-8" />
+
+	<link href="css/netproxyspinner.css" rel="stylesheet" />
+	<script src="scripts/macros.js?1" defer></script>
+	<script src="scripts/netproxy.js?1" defer></script>
+
+	<link href="Default.css" rel="stylesheet" />
+	<link href="Ui.css" rel="stylesheet" />
+	<script src="Default.js?1" defer></script>
+
 </head>
 <body>
-    <p>Examples in JsonBodyProviderTest.http file</p>
+	<img src="images/netproxyspinner.gif" id="netproxyspinner" />
+
+	<div><span id="UnitTest" class="ui-btn">Unit Test</span></div>
+
+	<div id="Result"></div>
+
+	<div id="UploadExample">
+		<label class="UploadImage ui-btn" for="UploadImage">Upload a File</label>
+		<input type="file" id="UploadImage" />
+	</div>
+
+	<div><span id="MultiBinderTest" class="ui-btn">MultiBinderTest</span></div>
+
+	<div><span id="PostIt" class="ui-btn">PostIt</span></div>
+
+	<div><a href="speedtest.html" class="ui-btn">SpeedTest</a></div>
+
+	<form action="/api/upload" method="post" enctype="multipart/form-data">
+		<label for="files">Select multiple files:</label>
+		<input type="file" name="files" id="files" multiple>
+		<button type="submit">Upload</button>
+	</form>
+
 </body>
 </html>

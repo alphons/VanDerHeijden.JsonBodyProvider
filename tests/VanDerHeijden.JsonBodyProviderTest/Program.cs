@@ -1,13 +1,30 @@
 using VanDerHeijden.JsonBodyProvider;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+	// the 'real' root of the application
+	ContentRootPath = AppDomain.CurrentDomain.BaseDirectory
+});
 
-builder.Services
-    .AddControllers()
-    .Services
-    .AddJsonBodyProvider(CorrectLists: true);
+builder.Services.AddMvcCore();
+
+builder.Services.AddJsonBodyProvider(CorrectLists: true, ParseCookies: true, ParseHeaders: true);
+
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession();
 
 var app = builder.Build();
 
+app.UseRouting();
+
+app.UseSession();
+
+app.UseDefaultFiles();
+
+app.UseStaticFiles();
+
 app.MapControllers();
+
 app.Run();
+
