@@ -8,7 +8,10 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 
 builder.Services.AddMvcCore();
 
-builder.Services.AddJsonBodyProvider(CorrectLists: true, ParseCookies: true, ParseHeaders: true);
+builder.Services.AddJsonBodyProvider(
+	CorrectLists: true, 
+	ParseCookies: true, 
+	ParseHeaders: true);
 
 builder.Services.AddDistributedMemoryCache();
 
